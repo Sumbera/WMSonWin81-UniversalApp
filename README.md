@@ -2,28 +2,21 @@ WMSonWin81
 ==========
 
 WMSonWin81using universal app for Windows Store and Windows Phone Store apps
+Both apps do not share same namespace for map nor component. Windows Store is using Bing Map while Windows Phone is using map control as part of the WP8.1 framework located  in Windows.UI.Xaml.Controls.Maps 
 
-
+there are 3 projects:
 WMSOnWin.Windows
 ====================
 
-Sample code of using WMS source  on Windows Store Apps using Bing Maps
-Adding WMS is using MapTileLayer contained in custom 'wrapper' class WMSTileLayer as MapTileLayer is sealed
-Then adding wmsLayer to the map is trivial:
+Sample code of using WMS source  on Windows Store Apps using Bing Maps:
 
-                WMSTileLayer wmsLayer = new WMSTileLayer(@"http://services.cuzk.cz/wms/wms.asp?&LAYERS=KN&REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=&CRS=EPSG:900913&WIDTH=256&HEIGHT=256&BBOX={0},{1},{2},{3}");
-                _bingMap.TileLayers.Add(wmsLayer.mapTileLayer);
+                MapTileLayer mapTileLayer = new MapTileLayer();
+                mapTileLayer.GetTileUri += delegate(object sender, GetTileUriEventArgs e) {
+                  // calc mercator coordinates and return   e.Uri
+                };
+                
+                _bingMap.TileLayers.Add(mapTileLayer);
 
-
- IMPORTANT: You must set the Active solution platform in Visual Studio to one of the following supported platforms for your app to work correctly. Select BUILD from the main menu, then Configuration Manager.
-
-    Choose one of the following supported solution platforms for the current project: ARM, x86 or x64
-
-        
-- Tested on Visual Studio 2013 Update 2, Windows 8.1 64bit
-
-- Same way of displaying WMS has been used for example in this Windows Store app: http://apps.microsoft.com/windows/en-us/app/ikatastr/76a1b39a-d013-4859-a128-7085c9a4fede
-- you will need to provide your Bing key 
 
 
 WMSOnWin.WindowsPhone
@@ -38,3 +31,11 @@ Sample code of using WMS on Windows Phone Store App using  Windows.UI.Xaml.Contr
                                 });
                  _map.TileSources.Add(new MapTileSource(dataSource));
                 
+
+
+ IMPORTANT: You must set the Active solution platform in Visual Studio to one of the following supported platforms for your app to work correctly. Select BUILD from the main menu, then Configuration Manager.
+
+   
+       
+- Tested on Visual Studio 2013 Update 2, Windows 8.1 64bit
+
