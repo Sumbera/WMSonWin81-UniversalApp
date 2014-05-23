@@ -33,7 +33,7 @@ namespace WMSOnWin81{
 
 
             _map = new MapControl();
-            _map.MapServiceToken = "r0sRWm4KndZvZUc7Sq-cSg";
+            _map.MapServiceToken = "yourtoken";
             BasicGeoposition center = new BasicGeoposition();
             center.Latitude = 50.07574;
             center.Longitude = 14.416;
