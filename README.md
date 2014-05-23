@@ -24,3 +24,17 @@ Then adding wmsLayer to the map is trivial:
 
 - Same way of displaying WMS has been used for example in this Windows Store app: http://apps.microsoft.com/windows/en-us/app/ikatastr/76a1b39a-d013-4859-a128-7085c9a4fede
 - you will need to provide your Bing key 
+
+
+WMSOnWin.WindowsPhone
+====================
+
+Sample code of using WMS on Windows Phone Store App using  Windows.UI.Xaml.Controls.Maps;
+
+                HttpMapTileDataSource dataSource = new HttpMapTileDataSource();
+                         dataSource.UriRequested += new TypedEventHandler<HttpMapTileDataSource, MapTileUriRequestedEventArgs>(
+                                (source, args) => {
+                                                //calc mercator coordinates and return args.Request.Uri
+                                });
+                 _map.TileSources.Add(new MapTileSource(dataSource));
+                
