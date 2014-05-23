@@ -36,11 +36,7 @@ namespace WMSOnWin81
 
                 MapTileLayer mapTileLayer = new MapTileLayer();
                 mapTileLayer.GetTileUri += delegate(object sender, GetTileUriEventArgs e) {
-                    int z = e.LevelOfDetail;
-                    int x = e.X;
-                    int y = e.Y;
-
-                    Rect mercBounds = GlobalMercator.TileBounds(new Tile(x, y), z);
+                    Rect mercBounds = GlobalMercator.TileBounds(new Tile(e.X, e.Y), e.LevelOfDetail);
                     e.Uri = new Uri(string.Format(_wmsUrl, mercBounds.Left, Math.Abs(mercBounds.Bottom), mercBounds.Right, Math.Abs(mercBounds.Top)));
                 };
 
